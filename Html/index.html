@@ -74,35 +74,6 @@
 
   </div>
 
-  <script>
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    const toRegister = document.getElementById('toRegister');
-    const toLogin = document.getElementById('toLogin');
-
-    function fadeSwitch(hideEl, showEl) {
-      hideEl.classList.add('fade-exit');
-      setTimeout(() => {
-        hideEl.classList.add('fade-exit-active');
-      }, 10);
-      setTimeout(() => {
-        hideEl.classList.add('hidden');
-        hideEl.classList.remove('fade-exit', 'fade-exit-active');
-
-        showEl.classList.remove('hidden');
-        showEl.classList.add('fade-enter');
-        setTimeout(() => {
-          showEl.classList.add('fade-enter-active');
-        }, 10);
-        setTimeout(() => {
-          showEl.classList.remove('fade-enter', 'fade-enter-active');
-        }, 400);
-      }, 400);
-    }
-
-    toRegister.addEventListener('click', () => fadeSwitch(loginForm, registerForm));
-    toLogin.addEventListener('click', () => fadeSwitch(registerForm, loginForm));
-  </script>
-
 </body>
+
 </html>
