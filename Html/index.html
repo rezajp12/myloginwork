@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Battle.net Login/Register</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fade-enter {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    .fade-enter-active {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .fade-exit {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-exit-active {
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+  </style>
+</head>
+<body class="bg-[#0b0e13] flex items-center justify-center min-h-screen text-gray-200 font-sans">
+
+  <div id="container" class="w-full max-w-sm bg-[#10141a] rounded-xl shadow-xl p-8 space-y-6 relative overflow-hidden">
+
+    <!-- لوگو -->
+    <div class="flex justify-center">
+      <img src="https://bnetcmsus-a.akamaihd.net/cms/template_resource/K2LFX3Z6Q2C01589390660372.png" alt="Battle.net logo" class="w-32">
+    </div>
+
+    <!-- فرم ورود -->
+    <div id="loginForm" class="space-y-6 transition-all duration-500">
+      <h1 class="text-center text-2xl font-semibold text-white">ورود به Battle.net</h1>
+
+      <form class="space-y-4">
+        <input type="email" placeholder="ایمیل یا تلفن" class="w-full bg-[#1c1f26] text-gray-100 px-4 py-3 rounded-md focus:ring-2 focus:ring-blue-500 outline-none transition" />
+        <input type="password" placeholder="رمز عبور" class="w-full bg-[#1c1f26] text-gray-100 px-4 py-3 rounded-md focus:ring-2 focus:ring-blue-500 outline-none transition" />
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 transition py-3 rounded-md font-semibold text-white">
+          ورود
+        </button>
+      </form>
+
+      <div class="text-center text-sm space-y-2">
+        <a href="#" class="text-blue-400 hover:underline block">رمز عبور را فراموش کرده‌اید؟</a>
+        <button id="toRegister" class="text-gray-400 hover:text-gray-200 transition">حساب ندارید؟ ساخت حساب جدید</button>
+      </div>
+    </div>
+
+    <!-- فرم ثبت‌نام -->
+    <div id="registerForm" class="hidden space-y-6">
+      <h1 class="text-center text-2xl font-semibold text-white">ساخت حساب Battle.net</h1>
+
+      <form class="space-y-4">
+        <input type="text" placeholder="نام کامل" class="w-full bg-[#1c1f26] text-gray-100 px-4 py-3 rounded-md focus:ring-2 focus:ring-blue-500 outline-none transition" />
+        <input type="email" placeholder="ایمیل" class="w-full bg-[#1c1f26] text-gray-100 px-4 py-3 rounded-md focus:ring-2 focus:ring-blue-500 outline-none transition" />
+        <input type="password" placeholder="رمز عبور" class="w-full bg-[#1c1f26] text-gray-100 px-4 py-3 rounded-md focus:ring-2 focus:ring-blue-500 outline-none transition" />
+        <input type="password" placeholder="تکرار رمز عبور" class="w-full bg-[#1c1f26] text-gray-100 px-4 py-3 rounded-md focus:ring-2 focus:ring-blue-500 outline-none transition" />
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 transition py-3 rounded-md font-semibold text-white">
+          ساخت حساب
+        </button>
+      </form>
+
+      <div class="text-center text-sm space-y-2">
+        <button id="toLogin" class="text-gray-400 hover:text-gray-200 transition">قبلاً حساب دارید؟ ورود</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const toRegister = document.getElementById('toRegister');
+    const toLogin = document.getElementById('toLogin');
+
+    function fadeSwitch(hideEl, showEl) {
+      hideEl.classList.add('fade-exit');
+      setTimeout(() => {
+        hideEl.classList.add('fade-exit-active');
+      }, 10);
+      setTimeout(() => {
+        hideEl.classList.add('hidden');
+        hideEl.classList.remove('fade-exit', 'fade-exit-active');
+
+        showEl.classList.remove('hidden');
+        showEl.classList.add('fade-enter');
+        setTimeout(() => {
+          showEl.classList.add('fade-enter-active');
+        }, 10);
+        setTimeout(() => {
+          showEl.classList.remove('fade-enter', 'fade-enter-active');
+        }, 400);
+      }, 400);
+    }
+
+    toRegister.addEventListener('click', () => fadeSwitch(loginForm, registerForm));
+    toLogin.addEventListener('click', () => fadeSwitch(registerForm, loginForm));
+  </script>
+
+</body>
+</html>
